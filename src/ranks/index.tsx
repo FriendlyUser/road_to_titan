@@ -24,19 +24,23 @@ type BounceContainerProps = {
   tier: string;
   subdivision: string;
   naRank?: string
+  delay: number;
 };
 
-export const RankContainer: React.FC<BounceContainerProps> = ({tier, subdivision, naRank}) => {
-  const { scaleValue } = useAppearWithScaleAndBounce();
+export const RankContainer: React.FC<BounceContainerProps> = ({tier, subdivision, naRank, delay}) => {
+  const { scaleValue } = useAppearWithScaleAndBounce(delay);
   const rankImgUrl = `fankit/${tier.toLowerCase()}.png`
-  console.log("rank_img", rankImgUrl)
-
-  const rankImg = staticFile(rankImgUrl);
   return (
-      <Container $scale={scaleValue}>
-        <Img src={staticFile(rankImg)} />
+      <Container $scale={scaleValue} style={{
+        position: "absolute",
+        top: 400,
+        width: "100%",
+      }}>
+        <Img src={staticFile(rankImgUrl)} style={{
+          height: "400px",
+        }} />
         <h4>
-          {tier} {subdivision} / {naRank}
+          {tier} {subdivision}
         </h4>
       </Container>
   );

@@ -79,15 +79,15 @@ export const HyunwooVideo: React.FC<{
 							}}>
 								{hyunWooStats.hyunwoo} Games
 						</h6>
-						<RankContainer tier={hyunWooStats.tier} subdivision={hyunWooStats.subdivision} naRank={hyunWooStats?.naRank || undefined} />
+						<RankContainer tier={hyunWooStats.tier} subdivision={hyunWooStats.subdivision} naRank={hyunWooStats?.naRank} delay={startFrame}/>
 				</div>
 			</>
 		)
 	}
 
-	const renderBg = (opacity= 0.25) => {
+	const renderBg = (img="imgs/bg.jpg", opacity= 0.25) => {
 		return (
-			<Img src={staticFile("imgs/bg.jpg")} style={{
+			<Img src={staticFile(img)} style={{
 				opacity,
 			}}/>
 		)
@@ -100,6 +100,9 @@ export const HyunwooVideo: React.FC<{
 				flexDirection: "row",
 				justifyContent: "space-between",
 				width: "100%",
+				zIndex: 5,
+				position: "absolute",
+				height: "100%",
 			}}>
 					<Video src={staticFile("vids/vod-1645684730-offset-19662.mp4")} style={{
 						width: "50%"
@@ -121,10 +124,12 @@ export const HyunwooVideo: React.FC<{
 				</Sequence>
 
 				<Sequence from={openingDuration} durationInFrames={30*21}>
-					<AbsoluteFill>
-						{renderBg()}
-					</AbsoluteFill>
 					{renderTwoVideosSeq1()}
+					<AbsoluteFill style={{
+						zIndex: 1,
+					}}>
+						{renderBg("fankit/ER_3840x2160.png", 0.5)}
+					</AbsoluteFill>
 				</Sequence>
 		</>
 	);
