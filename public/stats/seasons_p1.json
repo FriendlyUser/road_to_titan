@@ -3,7 +3,10 @@
         "name": "Season 1",
         "games": [
             {
-                "hyunwoo": 690
+                "hyunwoo": 690,
+                "subdivision": "1",
+                "tier": "Gold",
+                "naRank": null
             }
         ]
     },
@@ -11,7 +14,10 @@
         "name": "Season 2",
         "games": [
             {
-                "hyunwoo": 803
+                "hyunwoo": 803,
+                "subdivision": "3",
+                "tier": "Diamond",
+                "naRank": "103"
             }
         ]
     },
@@ -19,7 +25,10 @@
         "name": "Season 3",
         "games": [
             {
-                "hyunwoo": 226
+                "hyunwoo": 226,
+                "subdivision": "4",
+                "tier": "Diamond",
+                "naRank": "132"
             }
         ]
     }

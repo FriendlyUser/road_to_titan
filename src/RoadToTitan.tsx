@@ -11,6 +11,7 @@ import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
 import {Title} from './HelloWorld/Title';
 import seasonsP1 from '../public/stats/seasons_p1.json'
+import {RankContainer} from './ranks/index';
 
 
 
@@ -64,7 +65,7 @@ export const HyunwooVideo: React.FC<{
 						width: '100%',
 						// Transform: 'translateY(-50%)',
 					}}>{seasonName}</h1>
-				<h6 
+						<h6 
 							style={{
 								color: titleColor,
 								fontSize: 60,
@@ -77,16 +78,17 @@ export const HyunwooVideo: React.FC<{
 								// Transform: `scale(${bounceAnimation})`,
 							}}>
 								{hyunWooStats.hyunwoo} Games
-							</h6>
+						</h6>
+						<RankContainer tier={hyunWooStats.tier} subdivision={hyunWooStats.subdivision} naRank={hyunWooStats?.naRank || undefined} />
 				</div>
 			</>
 		)
 	}
 
-	const renderBg = () => {
+	const renderBg = (opacity= 0.25) => {
 		return (
 			<Img src={staticFile("imgs/bg.jpg")} style={{
-				opacity: 0.25,
+				opacity,
 			}}/>
 		)
 	};
@@ -119,6 +121,9 @@ export const HyunwooVideo: React.FC<{
 				</Sequence>
 
 				<Sequence from={openingDuration} durationInFrames={30*21}>
+					<AbsoluteFill>
+						{renderBg()}
+					</AbsoluteFill>
 					{renderTwoVideosSeq1()}
 				</Sequence>
 		</>
