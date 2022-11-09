@@ -3,26 +3,6 @@
         "name": "Season 1",
         "games": [
             {
-                "lenox": 1
-            }, {
-                "silvia": 1
-            },
-            {
-                "aya": 2
-            },
-            {
-                "magnus": 3
-            },
-            {
-                "jackie": 4
-            },
-            {
-                "luke": 32
-            },
-            {
-                "yuki": 185
-            },
-            {
                 "hyunwoo": 690
             }
         ]
@@ -31,30 +11,6 @@
         "name": "Season 2",
         "games": [
             {
-                "magnus": 1
-            },
-            {
-                "isol": 1
-            },
-            {
-                "leon": 3
-            },
-            {
-                "hart": 9
-            },
-            {
-                "sua": 12
-            },
-            {
-                "yuki": 16
-            },
-            {
-                "jackie": 18
-            },
-            {
-                "aya": 26
-            },
-            {
                 "hyunwoo": 803
             }
         ]
@@ -62,9 +18,6 @@
     {
         "name": "Season 3",
         "games": [
-            {
-                "yuki": 1
-            },
             {
                 "hyunwoo": 226
             }
