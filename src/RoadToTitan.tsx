@@ -1,3 +1,4 @@
+import {OffthreadVideo} from 'remotion'
 import {Audio} from 'remotion'
 import {Video} from 'remotion'
 import {Img, spring, staticFile} from 'remotion';
@@ -62,11 +63,12 @@ export const HyunwooVideo: React.FC<{
 						position: 'absolute',
 						top: 100,
 						width: '100%',
+						color: 'white',
 						// Transform: 'translateY(-50%)',
 					}}>{seasonName}</h1>
 						<h6 
 							style={{
-								color: titleColor,
+								color: 'white',
 								fontSize: 60,
 								textAlign: 'center',
 								position: 'absolute',
@@ -96,23 +98,19 @@ export const HyunwooVideo: React.FC<{
 		const vidData = [
 			{
 				vidSrc: "vids/1625621478-medaltveternalreturnblacksurvival20210706183010.mp4",
-				playbackSpeed: 4
+				playbackSpeed: 2
 			},
 			{
 				vidSrc: "vids/1625789769-medaltveternalreturnblacksurvival20210708171311.mp4",
-				playbackSpeed: 4
+				playbackSpeed: 2
 			},
 		]
 		const [vid1, vid2] = vidData;
 		const adjustedFrame = frame - openingDuration - buffsNerfsMeanMessageDuration;
-		const vidsToShow = Math.floor((adjustedFrame / medalVideoI) * 2);
-		let video1;
-		let video2;
-		if (vidsToShow === 0) {
-			video1 = <Video src={staticFile(vid1.vidSrc)} playbackRate={2} style={{
+		const video1 = <OffthreadVideo  src={staticFile(vid1.vidSrc)} playbackRate={2} style={{
 				width: "50%"
 			}}/>
-			video2 = <Video src={staticFile(vid2.vidSrc)} playbackRate={2} style={{
+		const video2 = <OffthreadVideo  src={staticFile(vid2.vidSrc)} playbackRate={2} style={{
 				width: "50%"
 			}}/>
 			return (
@@ -131,7 +129,6 @@ export const HyunwooVideo: React.FC<{
 				</div>
 				</>
 			);
-		};
 	}
 
 	const renderMedalVidsII = () => {
@@ -157,10 +154,10 @@ export const HyunwooVideo: React.FC<{
 				position: "absolute",
 				height: "100%",
 			}}>
-					<Video loop src={staticFile(vid1.vidSrc)} playbackRate={2} style={{
+					<OffthreadVideo  src={staticFile(vid1.vidSrc)} playbackRate={2} style={{
 			width: "50%"
 		}} />
-					<Video loop src={staticFile(vid2.vidSrc)} playbackRate={2} style={{
+					<OffthreadVideo  src={staticFile(vid2.vidSrc)} playbackRate={2} style={{
 			width: "50%"
 		}}/>
 			</div>
@@ -179,10 +176,10 @@ export const HyunwooVideo: React.FC<{
 				position: "absolute",
 				height: "100%",
 			}}>
-					<Video src={staticFile("vids/vod-1645684730-offset-19662.mp4")} style={{
+					<OffthreadVideo  src={staticFile("vids/vod-1645684730-offset-19662.mp4")} style={{
 						width: "50%"
 					}} volume={0}/>
-				<Video src={staticFile("vids/vod-1645799798-offset-9696.mp4")} style={{
+				<OffthreadVideo  src={staticFile("vids/vod-1645799798-offset-9696.mp4")} style={{
 						width: "50%"
 					}} volume={0}/>
 				<Audio src={staticFile("fankit/hyunwoo_firstMove_1_en.wav")} volume={0.9}/>
@@ -228,7 +225,6 @@ export const HyunwooVideo: React.FC<{
 	}
 
 	const renderShowTitanLevel = () => {
-		const headingOpacity = interpolate(frame, [0, 10*fps], [1, 0.25]);
 		return (
 			<>
 			<div style={{
@@ -237,25 +233,24 @@ export const HyunwooVideo: React.FC<{
 				width: "100%",
 				}}>
 					<h1 style={{
-						opacity: headingOpacity,
+						// Opacity: headingOpacity,
 						fontWeight: 'bold',
 						fontSize: 100,
 						textAlign: 'center',
 						position: 'absolute',
 						top: 100,
 						width: '100%',
+						color: 'white',
 						// Transform: 'translateY(-50%)',
 					}}>Season 7</h1>
 						<h6 
 							style={{
-								color: titleColor,
 								fontSize: 60,
 								textAlign: 'center',
 								position: 'absolute',
 								top: 300,
 								width: '100%',
-								// Opacity: (endFrame - startFrame) / (frameDuration),
-								// Transform: `scale(${bounceAnimation})`,
+								color: 'white',
 							}}>
 								336 Games
 						</h6>
