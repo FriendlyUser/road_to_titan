@@ -1,3 +1,4 @@
+import {interpolateColors} from 'remotion'
 import {OffthreadVideo} from 'remotion'
 import {Audio} from 'remotion'
 import {Video} from 'remotion'
@@ -33,7 +34,14 @@ export const HyunwooVideo: React.FC<{
 	const medalVideoII = fps*60/2;
 	const twitchClipDuration = fps*21;
 
-	const renderSeasonText = () => {
+	// Start times
+
+	const medalVideoIStart = openingDuration + buffsNerfsMeanMessageDuration;
+	const medalVideoIIStart = medalVideoIStart + medalVideoI;
+	
+	const twitchClipStart = medalVideoIIStart + medalVideoII;
+
+	const renderSeasonText1To3 = () => {
 		// Center div with transitioning appearing text
 
 		// show opacity: (frame - (wordStart * videoConfig.fps)) / (videoConfig.fps * 0.5),
@@ -106,15 +114,32 @@ export const HyunwooVideo: React.FC<{
 			},
 		]
 		const [vid1, vid2] = vidData;
-		const adjustedFrame = frame - openingDuration - buffsNerfsMeanMessageDuration;
 		const video1 = <OffthreadVideo  src={staticFile(vid1.vidSrc)} playbackRate={2} style={{
 				width: "50%"
 			}}/>
 		const video2 = <OffthreadVideo  src={staticFile(vid2.vidSrc)} playbackRate={2} style={{
 				width: "50%"
 			}}/>
+
+			const textColor = interpolateColors(frame, [medalVideoIStart, medalVideoIStart + medalVideoI], ["white", "#808080"]);
 			return (
 				<>
+							<div style={{
+				position: "absolute",
+				height: "100%",
+				zIndex: 5,
+				width: "100%",
+				textAlign: "center",
+				top: 50,
+
+			}}>
+				<h5 style={{
+					fontSize: 50,
+					color: textColor,
+				}}>
+					From TANKWOO
+				</h5>
+			</div>
 					<div style={{
 					display: "flex",
 					flexDirection: "row",
@@ -143,8 +168,25 @@ export const HyunwooVideo: React.FC<{
 			},
 		]
 		const [vid1, vid2] = vidData;
+		const textColor = interpolateColors(frame, [medalVideoIIStart, medalVideoIIStart + medalVideoI], ["#808080", "black"]);
 		return (
 			<>
+			<div style={{
+				position: "absolute",
+				height: "100%",
+				zIndex: 5,
+				width: "100%",
+				textAlign: "center",
+				top: 50,
+
+			}}>
+				<h5 style={{
+					fontSize: 50,
+					color: textColor,
+				}}>
+					From TankWOO
+				</h5>
+			</div>
 				<div style={{
 				display: "flex",
 				flexDirection: "row",
@@ -166,7 +208,25 @@ export const HyunwooVideo: React.FC<{
 	}
 
 	const renderTwoVideosSeqWin = () => {
+		const textColor = interpolateColors(frame, [medalVideoIIStart, medalVideoIIStart + medalVideoI], ["black", "blue"]);
 		return (
+			<>
+			<div style={{
+				position: "absolute",
+				height: "100%",
+				zIndex: 5,
+				width: "100%",
+				textAlign: "center",
+				top: 50,
+
+			}}>
+				<h5 style={{
+					fontSize: 50,
+					color: textColor,
+				}}>
+					to AmpWOO
+				</h5>
+			</div>
 			<div style={{
 				display: "flex",
 				flexDirection: "row",
@@ -184,6 +244,7 @@ export const HyunwooVideo: React.FC<{
 					}} volume={0}/>
 				<Audio src={staticFile("fankit/hyunwoo_firstMove_1_en.wav")} volume={0.9}/>
 			</div>
+			</>
 		)
 	}
 
@@ -268,22 +329,22 @@ export const HyunwooVideo: React.FC<{
 					<AbsoluteFill>
 						{renderBg()}
 					</AbsoluteFill>
-					{renderSeasonText()}
+					{renderSeasonText1To3()}
 				</Sequence>
 
 				<Sequence from={openingDuration} durationInFrames={buffsNerfsMeanMessageDuration}>
 					{renderScreenshots()}
 				</Sequence>
 
-				<Sequence from={openingDuration +buffsNerfsMeanMessageDuration} durationInFrames={medalVideoI}>
+				<Sequence from={medalVideoIStart} durationInFrames={medalVideoI}>
 					{renderMedalVidsI()}
 					<AbsoluteFill style={{
 						zIndex: 1,
 					}}>
-						{renderBg("fankit/ER_3840x2160.png", 0.5)}
+						{renderBg("fankit/04.3840_2160.png", 0.5)}
 					</AbsoluteFill>
 				</Sequence>
-				<Sequence from={openingDuration +buffsNerfsMeanMessageDuration+ medalVideoI} durationInFrames={medalVideoI}>
+				<Sequence from={medalVideoIIStart} durationInFrames={medalVideoI}>
 					{renderMedalVidsII()}
 					<AbsoluteFill style={{
 						zIndex: 1,
@@ -292,15 +353,15 @@ export const HyunwooVideo: React.FC<{
 					</AbsoluteFill>
 				</Sequence>
 
-				<Sequence from={openingDuration+buffsNerfsMeanMessageDuration+medalVideoI*2} durationInFrames={twitchClipDuration}>
+				<Sequence from={twitchClipStart} durationInFrames={twitchClipDuration}>
 					{renderTwoVideosSeqWin()}
 					<AbsoluteFill style={{
 						zIndex: 1,
 					}}>
-						{renderBg("fankit/ER_3840x2160.png", 0.5)}
+						{renderBg("fankit/3840x2160.png", 0.5)}
 					</AbsoluteFill>
 				</Sequence>
-				<Sequence from={openingDuration+buffsNerfsMeanMessageDuration+medalVideoI*2+twitchClipDuration} durationInFrames={fps*10}>
+				<Sequence from={twitchClipStart+twitchClipDuration} durationInFrames={fps*10}>
 					{renderShowTitanLevel()}
 					<AbsoluteFill style={{
 						zIndex: 1,
