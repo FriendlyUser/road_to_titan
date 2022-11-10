@@ -361,6 +361,8 @@ export const HyunwooVideo: React.FC<{
 						{renderBg("fankit/3840x2160.png", 0.5)}
 					</AbsoluteFill>
 				</Sequence>
+				{/** ranking to season 7 */}
+				{/** Add titan level, add thanks for watching screen */}
 				<Sequence from={twitchClipStart+twitchClipDuration} durationInFrames={fps*10}>
 					{renderShowTitanLevel()}
 					<AbsoluteFill style={{
