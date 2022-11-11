@@ -78,12 +78,12 @@ export const HyunwooVideo: React.FC<{
 						position: 'absolute',
 						top: 100,
 						width: '100%',
-						color: 'white',
+						color: 'black',
 						// Transform: 'translateY(-50%)',
 					}}>{seasonName}</h1>
 						<h6 
 							style={{
-								color: 'white',
+								color: 'black',
 								fontSize: 60,
 								textAlign: 'center',
 								position: 'absolute',
@@ -117,34 +117,41 @@ export const HyunwooVideo: React.FC<{
 		const startFrame = seasonToShow * rankingRestDuration / 3;
 		const endFrame = startFrame + rankingRestDuration / 3;
 
-		const headingOpacity = interpolate(frame, [startFrame, endFrame], [1, 0.25]);
+		const headingOpacity = interpolate(frame, [startFrame, endFrame], [1, 0.75]);
 
-		const textOpacity = interpolate(frame, [startFrame, startFrame +10, startFrame + 20, startFrame +25, endFrame], [0.25, 0.75, 0.6, 0.5, 0.4]);
+		const textOpacity = interpolate(frame, [startFrame, startFrame +10, startFrame + 20, startFrame +25, endFrame], [0.75, 0.95, 1, 0.95, 0.9]);
 		return (
 			<>
 				<div style={{
+					zIndex: 5,
 				}}>
+					<Img src={staticFile('woo/CharProfile_Hyunwoo_S000.png')} style={{
+						position: 'absolute',
+						height: "150px",
+						left: "46%",
+						top: 250,
+					}}/>
 					<h1 style={{
-						opacity: headingOpacity,
+						// Opacity: headingOpacity,
 						fontWeight: 'bold',
 						fontSize: 100,
 						textAlign: 'center',
 						position: 'absolute',
-						top: 100,
+						top: 50,
 						width: '100%',
 						color: 'white',
 						// Transform: 'translateY(-50%)',
 					}}>{seasonName}</h1>
 						<h6 
 							style={{
-								color: 'white',
+								color: 'black',
 								fontSize: 60,
 								textAlign: 'center',
 								position: 'absolute',
 								top: 300,
 								width: '100%',
 								// Opacity: (endFrame - startFrame) / (frameDuration),
-								opacity: textOpacity,
+								// opacity: textOpacity,
 								// Transform: `scale(${bounceAnimation})`,
 							}}>
 								{hyunWooStats.hyunwoo} Games
@@ -354,6 +361,12 @@ export const HyunwooVideo: React.FC<{
 				zIndex: 5,
 				width: "100%",
 				}}>
+										<Img src={staticFile('woo/CharProfile_Hyunwoo_S000.png')} style={{
+						position: 'absolute',
+						height: "150px",
+						left: "46%",
+						top: 250,
+					}}/>
 					<h1 style={{
 						// Opacity: headingOpacity,
 						fontWeight: 'bold',
@@ -384,7 +397,7 @@ export const HyunwooVideo: React.FC<{
 
 	return (
 		<>
-			<Audio volume={0.19} src={staticFile("fankit/er_instrumental.mp3")} />
+			<Audio volume={0.19} src={staticFile("woo/Endless dream.mp3")} />
 				{/* A bunch of stuff rendered to show the color stuff */}
 				<Sequence durationInFrames={openingDuration}>
 					<AbsoluteFill>

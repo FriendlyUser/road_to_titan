@@ -12,7 +12,7 @@ export const RemotionVideo: React.FC = () => {
 				// npx remotion render src/index.tsx <id> out/video.mp4
 				id="RoadToTitan"
 				component={HyunwooVideo}
-				durationInFrames={30*60*2+10*30}
+				durationInFrames={30*60*2+30*30}
 				fps={30}
 				width={1920}
 				height={1080}
