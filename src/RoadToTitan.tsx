@@ -14,6 +14,7 @@ import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
 import {Title} from './HelloWorld/Title';
 import seasonsP1 from '../public/stats/seasons_p1.json'
+import seasonsP2 from '../public/stats/seasons_p2.json'
 import {RankContainer} from './ranks/index';
 import { ScreenshotContainer, SimpleContainer } from './Screenshots';
 
@@ -41,6 +42,12 @@ export const HyunwooVideo: React.FC<{
 	
 	const twitchClipStart = medalVideoIIStart + medalVideoII;
 
+	const ranking4To6Start = twitchClipStart + twitchClipDuration;
+
+	const rankingRestDuration = fps*20;
+
+	const finalSection = ranking4To6Start + rankingRestDuration;
+
 	const renderSeasonText1To3 = () => {
 		// Center div with transitioning appearing text
 
@@ -55,6 +62,60 @@ export const HyunwooVideo: React.FC<{
 		const hyunWooStats = seasonData.games[0]
 		const startFrame = seasonToShow * openingDuration / 3;
 		const endFrame = startFrame + openingDuration / 3;
+
+		const headingOpacity = interpolate(frame, [startFrame, endFrame], [1, 0.25]);
+
+		const textOpacity = interpolate(frame, [startFrame, startFrame +10, startFrame + 20, startFrame +25, endFrame], [0.25, 0.75, 0.6, 0.5, 0.4]);
+		return (
+			<>
+				<div style={{
+				}}>
+					<h1 style={{
+						opacity: headingOpacity,
+						fontWeight: 'bold',
+						fontSize: 100,
+						textAlign: 'center',
+						position: 'absolute',
+						top: 100,
+						width: '100%',
+						color: 'white',
+						// Transform: 'translateY(-50%)',
+					}}>{seasonName}</h1>
+						<h6 
+							style={{
+								color: 'white',
+								fontSize: 60,
+								textAlign: 'center',
+								position: 'absolute',
+								top: 300,
+								width: '100%',
+								// Opacity: (endFrame - startFrame) / (frameDuration),
+								opacity: textOpacity,
+								// Transform: `scale(${bounceAnimation})`,
+							}}>
+								{hyunWooStats.hyunwoo} Games
+						</h6>
+						<RankContainer tier={hyunWooStats.tier} subdivision={hyunWooStats.subdivision} naRank={hyunWooStats?.naRank} delay={startFrame}/>
+				</div>
+			</>
+		)
+	}
+
+	const renderSeasonText4To6 = () => {
+		// Center div with transitioning appearing text
+
+		// show opacity: (frame - (wordStart * videoConfig.fps)) / (videoConfig.fps * 0.5),
+		// 3 seasons to start split by 1/3 openingDuration
+		const adjustedFrame = frame - ranking4To6Start
+		const seasonToShow = Math.floor((adjustedFrame / rankingRestDuration) * 3);
+		const seasonData = seasonsP2[seasonToShow];
+		if (!seasonData) {
+			return null;
+		}
+		const seasonName = seasonData.name;
+		const hyunWooStats = seasonData.games[0]
+		const startFrame = seasonToShow * rankingRestDuration / 3;
+		const endFrame = startFrame + rankingRestDuration / 3;
 
 		const headingOpacity = interpolate(frame, [startFrame, endFrame], [1, 0.25]);
 
@@ -362,8 +423,16 @@ export const HyunwooVideo: React.FC<{
 					</AbsoluteFill>
 				</Sequence>
 				{/** ranking to season 7 */}
+				<Sequence from={ranking4To6Start} durationInFrames={rankingRestDuration}>
+					{renderSeasonText4To6()}
+					<AbsoluteFill style={{
+						zIndex: 1,
+					}}>
+						{renderBg("fankit/ER_3840x2160.png", 0.5)}
+					</AbsoluteFill>
+				</Sequence>
 				{/** Add titan level, add thanks for watching screen */}
-				<Sequence from={twitchClipStart+twitchClipDuration} durationInFrames={fps*10}>
+				<Sequence from={finalSection} durationInFrames={fps*10}>
 					{renderShowTitanLevel()}
 					<AbsoluteFill style={{
 						zIndex: 1,

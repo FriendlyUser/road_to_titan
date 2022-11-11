@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Season 4",
+        "games": [
+            {
+                "hyunwoo": 463,
+                "subdivision": "4",
+                "tier": "Gold",
+                "naRank": "106"
+            }
+        ]
+    },
+    {
+        "name": "Season 5",
+        "games": [
+            {
+                "hyunwoo": 363,
+                "subdivision": "4",
+                "tier": "Diamond",
+                "naRank": "99"
+            }
+        ]
+    },
+    {
+        "name": "Season 6",
+        "games": [
+            {
+                "hyunwoo": 125  ,
+                "subdivision": "4",
+                "tier": "Platinum",
+                "naRank": "274"
+            }
+        ]
+    }
+]
